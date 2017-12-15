@@ -77,23 +77,25 @@ class Salary(object):
 
 if __name__ == '__main__':
     import sys
-    args_list = sys.argv[1:]  
-    if len(args_list) == 6 and '-c' in args_list and '-d' in args_list  and '-o' in args_list:
-        c_index = args_list.index('-c')
-        configfile = args_list[c_index + 1]
-        config = Config(configfile)
-        d_index = args_list.index('-d')
-        userdatafile = args_list[d_index + 1]
-        userdata = UserData(userdatafile)
-        basel = float(config.config['JiShuL'])
-        baseh = float(config.config['JiShuH'])
-        soinsurp = float(config.config['YangLao']) + float(config.config['YiLiao']) + float(config.config['GongJiJin']) + float(config.config['GongShang']) +float(config.config['ShiYe']) + float(config.config['ShengYu'])
-        o_index = args_list.index('-o')
-        outputfile = args_list[o_index + 1]
-        for k,v in userdata.userdata.items():
-            salary = Salary(float(v),soinsurp,basel,baseh)
-            with open(outputfile,'a') as f:
-                f.write(k + ',' + v + ',' + str(salary.soinsur) + ',' + str(salary.pitax) + ',' + str(salary.aftax) + "\n")                                                                                                      
-                
-           
-   
+    args_list = sys.argv[1:]
+    try:   
+        if len(args_list) == 6 and '-c' in args_list and '-d' in args_list  and '-o' in args_list:
+            c_index = args_list.index('-c')
+            configfile = args_list[c_index + 1]
+            config = Config(configfile)
+            d_index = args_list.index('-d')
+            userdatafile = args_list[d_index + 1]
+            userdata = UserData(userdatafile)
+            basel = float(config.config['JiShuL'])
+            baseh = float(config.config['JiShuH'])
+            soinsurp = float(config.config['YangLao']) + float(config.config['YiLiao']) + float(config.config['GongJiJin']) + float(config.config['GongShang']) +float(config.config['ShiYe']) + float(config.config['ShengYu'])
+            o_index = args_list.index('-o')
+            outputfile = args_list[o_index + 1]
+            for k,v in userdata.userdata.items():
+                salary = Salary(float(v),soinsurp,basel,baseh)
+                with open(outputfile,'a') as f:
+                    f.write(k + ',' + v + ',' + '{:.2f}'.format(salary.soinsur) + ',' + '{:.2f}'.format(salary.pitax) + ',' + '{:.2f}'.format(salary.aftax) + "\n")                                                                                                     
+        else:
+            raise ParameterError
+    except:
+        print('ParameterError')   
