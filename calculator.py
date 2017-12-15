@@ -32,6 +32,7 @@ class UserDate(object):
             return self._userdate
         else:
             return self._userdate[key]
-    def cal_soiner(self,key=None):
-        for v in self._userdata.items()
-                       
+
+
+
+class                            
