@@ -16,13 +16,13 @@ class Config(object):
         return config 
 
 
-class UserDate(object):
+class UserData(object):
     def __init__(self,userdatafile):
         self._userdatafile = userdatafile
     
     @property 
     def userdata(self):
-        userdate = {}
+        userdata = {}
         with open(self._userdatafile) as file:
             for line in file:
                 s = line.split(',')
@@ -30,7 +30,8 @@ class UserDate(object):
                 fvalue = s[1].strip()
                 userdata[fkey] = fvalue
         return userdata
-
+    
+      
 
 class Salary(object):
     #bftax is salary before the pitax
@@ -74,5 +75,10 @@ class Salary(object):
     def aftax(self):
         return self._bftax - self.soinsur - self.pitax                          
 if __name__ == '__main__':
-   salary = Salary(8000,0.10,3000,9000)
-   print(salary.soinsur,salary.pitax,salary.aftax)
+   import sys  
+   config = Config('test.cfg')
+   userdata = UserData('user.csv')
+   print(config.config)
+   print(userdata.userdata)    
+    
+   
