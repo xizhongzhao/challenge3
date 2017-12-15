@@ -34,6 +34,9 @@ class UserDate(object):
 
 class Salary(object):
     #bftax is salary before the pitax
+    #soinsurp is socail insur pecentage
+    #basel is the lowest base
+    #baseh is the hightest base
     def __init__(self,bftax,soinsurp,basel,baseh):
         self._bftax = bftax
         self._soinsurp = soinsurp
