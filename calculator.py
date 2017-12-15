@@ -76,25 +76,24 @@ class Salary(object):
         return self._bftax - self.soinsur - self.pitax                          
 
 if __name__ == '__main__':
-   import sys
-   args_list = sys.argv[1:]  
-   if len(args_list) == 6 and '-c' in args_list and '-d' in args_list  and '-o' in args_list:
-       c_index = args_list.index('-c')
-       configfile = args_list[c_index + 1]
-       config = Config(configfile)
-       d_index = args_list.index('-d')
-       userdatafile = args_list[d_index + 1]
-       userdata = UserData(userdatafile)
-       basel = config['JiShuL']
-       baseh = config['JiShuH']
-       soinsurp = config['YangLao'] + config['YiLiao'] + config['GongJiJin'] + config['GongShang'] +
-config['ShiYe'] + config['ShengYu']
-       o_index = args_list.index('-o')
-       outputfile = args_list[o_index + 1]
-       with open(outputfile,'a') as file:
-           for k,v in userdata.items():
-               salary = Salary(v,soinsurp,basel,baseh)
-               salary.bftax
-               salary.  
+    import sys
+    args_list = sys.argv[1:]  
+    if len(args_list) == 6 and '-c' in args_list and '-d' in args_list  and '-o' in args_list:
+        c_index = args_list.index('-c')
+        configfile = args_list[c_index + 1]
+        config = Config(configfile)
+        d_index = args_list.index('-d')
+        userdatafile = args_list[d_index + 1]
+        userdata = UserData(userdatafile)
+        basel = config['JiShuL']
+        baseh = config['JiShuH']
+        soinsurp = config['YangLao'] + config['YiLiao'] + config['GongJiJin'] + config['GongShang'] +config['ShiYe'] + config['ShengYu']
+        o_index = args_list.index('-o')
+        outputfile = args_list[o_index + 1]
+        for k,v in userdata.items():
+            salary = Salary(v,soinsurp,basel,baseh)
+            with open(outputfile,'aw') as f:
+                f.write(k + ',' + v + ',' + salary.soinsur + ',' + salary.pitax + ',' + salary.aftax + "\n")                                                                                                      
+                
            
    
