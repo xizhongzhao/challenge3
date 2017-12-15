@@ -76,5 +76,4 @@ class Salary(object):
     def get_aftax(self):
         return self._bftax - self._insur - self._pitax                          
 if __name__ == '__main__':
-    salary = Salary(8000,0.18,2900,16000)
-    salary.pitax
+    
