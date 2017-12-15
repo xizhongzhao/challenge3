@@ -39,22 +39,20 @@ class Salary(object):
     #bftax is salary before the pitax
     def __init__(self,bftax,soinsurp,basel,baseh):
         self._bftax = bftax
-        self._soinsur = 0.0
-        self._pitax = 0.0
-        self._aftax = 0.0
         self._soinsurp = soinsurp
         self._basel = basel
         self._baseh = baseh
-
-    def get_soinsur(self):
+    @property 
+    def soinsur(self):
         if self._bftax <= self._basel:
             return self._basel * self._soinsurp
         elif self._bftax >= self._baseh:
-            return self._baseh * self.soinsurp
+            return self._baseh * self._soinsurp
         else:
-            return self.bftax * self.soinsurp
+            return self._bftax * self._soinsurp
     
-    def get_pitax(self):
+    @property
+    def pitax(self):
         taxbase = self._bftax - self._soinsur - 3500
         if taxbase <= 0:
             return 0
@@ -72,8 +70,9 @@ class Salary(object):
             return (taxbase * 0.35 - 5505)
         else:
             return (taxbase * 0.45 - 13505)
-
-    def get_aftax(self):
+    @property
+    def aftax(self):
         return self._bftax - self._insur - self._pitax                          
 if __name__ == '__main__':
-    
+   salary = Salary(8000,0.10,3000,9000)
+   print(salary.soinsur)
