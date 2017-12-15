@@ -85,15 +85,15 @@ if __name__ == '__main__':
         d_index = args_list.index('-d')
         userdatafile = args_list[d_index + 1]
         userdata = UserData(userdatafile)
-        basel = config['JiShuL']
-        baseh = config['JiShuH']
-        soinsurp = config['YangLao'] + config['YiLiao'] + config['GongJiJin'] + config['GongShang'] +config['ShiYe'] + config['ShengYu']
+        basel = float(config.config['JiShuL'])
+        baseh = float(config.config['JiShuH'])
+        soinsurp = float(config.config['YangLao']) + float(config.config['YiLiao']) + float(config.config['GongJiJin']) + float(config.config['GongShang']) +float(config.config['ShiYe']) + float(config.config['ShengYu'])
         o_index = args_list.index('-o')
         outputfile = args_list[o_index + 1]
-        for k,v in userdata.items():
-            salary = Salary(v,soinsurp,basel,baseh)
-            with open(outputfile,'aw') as f:
-                f.write(k + ',' + v + ',' + salary.soinsur + ',' + salary.pitax + ',' + salary.aftax + "\n")                                                                                                      
+        for k,v in userdata.userdata.items():
+            salary = Salary(float(v),soinsurp,basel,baseh)
+            with open(outputfile,'a') as f:
+                f.write(k + ',' + v + ',' + str(salary.soinsur) + ',' + str(salary.pitax) + ',' + str(salary.aftax) + "\n")                                                                                                      
                 
            
    
