@@ -50,7 +50,7 @@ class Salary(object):
     
     @property
     def pitax(self):
-        taxbase = self._bftax - self._soinsur - 3500
+        taxbase = self._bftax - self.soinsur - 3500
         if taxbase <= 0:
             return 0
         elif taxbase > 0 and taxbase <= 1500:
@@ -69,7 +69,7 @@ class Salary(object):
             return (taxbase * 0.45 - 13505)
     @property
     def aftax(self):
-        return self._bftax - self._insur - self._pitax                          
+        return self._bftax - self.soinsur - self.pitax                          
 if __name__ == '__main__':
    salary = Salary(8000,0.10,3000,9000)
-   print(salary.soinsur)
+   print(salary.soinsur,salary.pitax,salary.aftax)
