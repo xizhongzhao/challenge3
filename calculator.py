@@ -78,7 +78,7 @@ if __name__ == '__main__':
    import sys  
    config = Config('test.cfg')
    userdata = UserData('user.csv')
-   print(config.config)
-   print(userdata.userdata)    
+   print(config.config['JiShuL'])
+   print(userdata.userdata['101'])    
     
    
